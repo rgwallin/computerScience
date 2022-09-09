@@ -15,8 +15,9 @@
  - callout(Exercise): How many minutes of video will it take to fill the phone?\
  _Hint_: Do all of your calculations in megabytes (MB).
  */
- 
-
+ 5000/150
+// answer is 33 minutes of videos on your phone
+8000-3000
 
 /*:
 [Previous](@previous)  |  page 12 of 14  |  [Next: Exercise: Fixing Your Morning](@next)

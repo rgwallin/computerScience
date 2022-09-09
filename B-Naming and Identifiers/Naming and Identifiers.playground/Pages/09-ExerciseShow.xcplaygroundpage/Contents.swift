@@ -27,7 +27,9 @@ Your friend is done with the pet show. With your help, it was a big success. Now
 Add your code below. To help you get started, the constant `numberOfTickets` is already defined.
  */
 let numberOfTickets = 150
-
+let ticketPrice = 10
+let roomRentalFee = 1000
+let posterCost = 40
 /*:
 [Previous](@previous)  |  page 10 of 14  |  [Next: Exercise: Lottery Tickets](@next)
  */
