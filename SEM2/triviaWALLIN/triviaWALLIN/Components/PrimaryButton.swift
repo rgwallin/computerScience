@@ -12,8 +12,9 @@ struct PrimaryButton: View {
     var background: Color = Color("AccentColor")
     var body: some View {
         Text(text)
-            .foregroundColor(.pink)
+            .foregroundColor(.white)
             .padding()
+            .fontWeight(.bold)
             .padding(.horizontal)
             .background(background)
             .cornerRadius(30)
@@ -23,6 +24,6 @@ struct PrimaryButton: View {
 
 struct PrimaryButton_Previews: PreviewProvider {
     static var previews: some View {
-        PrimaryButton(text: "Next")
+        PrimaryButton(text: "NEXT")
     }
 }

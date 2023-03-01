@@ -8,37 +8,51 @@
 import SwiftUI
 
 struct QuestionView: View {
+    @EnvironmentObject var triviaManager: TriviaManager
     var body: some View {
         VStack(spacing: 40){
             HStack{
                 Text("Trivia Game")
                     .mainTitle()
                 Spacer()
-                Text("1 out of 10")
+                Text("\(triviaManager.index + 1) out of \(triviaManager.length)")
                     .foregroundColor(.blue)
                     .fontWeight(.heavy)
             }
-            ProgressBar(progress: 40)
+            ProgressBar(progress: triviaManager.progress)
             
             VStack(alignment: .leading, spacing: 20){
-                Text("Which of these is NOT an Australian state or territory?")
+                Text(triviaManager.question)
                     .font(.system(size: 20))
                     .bold()
                     .foregroundColor(.white)
                 
-                AnswerRow(answer: Answer(text: "Alberta", isCorrect: true))
-                AnswerRow(answer: Answer(text: "New South Wales", isCorrect: false))
-                AnswerRow(answer: Answer(text: "Queensland", isCorrect: false))
-                AnswerRow(answer: Answer(text: "Victoria", isCorrect: false))
+                ForEach(triviaManager.answerChoices, id: \.id) { answer in
+                    AnswerRow(answer: answer)
+                        .environmentObject(triviaManager)
+                }
+                
+//                AnswerRow(answer: Answer(text: "Alaska", isCorrect: true))
+//                    .environmentObject(triviaManager)
+//                AnswerRow(answer: Answer(text: "California", isCorrect: false))
+//                    .environmentObject(triviaManager)
+//                AnswerRow(answer: Answer(text: "Texas", isCorrect: false))
+//                    .environmentObject(triviaManager)
+//                AnswerRow(answer: Answer(text: "Washington", isCorrect: false))
+//                    .environmentObject(triviaManager)
             }
-            
-            PrimaryButton(text: "Next")
+            Button {
+                triviaManager.goToNextQuestion()
+            } label: {
+                PrimaryButton(text: "NEXT", background: triviaManager.answerSelected ? .blue : .gray)
+            }
+            .disabled(!triviaManager.answerSelected)
             Spacer()
             
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.green)
+        .background(Color(red: 0.5, green: 0.75, blue: 0.5))
         .navigationBarHidden(true)
     }
 }
@@ -46,5 +60,6 @@ struct QuestionView: View {
 struct QuestionView_Previews: PreviewProvider {
     static var previews: some View {
         QuestionView()
+            .environmentObject(TriviaManager())
     }
 }
